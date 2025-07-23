@@ -1,0 +1,49 @@
+
+1️⃣ 進入 frontend 資料夾
+> cd frontend
+
+2️⃣ 安裝所需套件
+> npm install
+
+3️⃣ 啟動開發伺服器（網址會是 http://localhost:5173）
+> npm run dev
+
+---
+
+==============================
+後端安裝與執行 | Backend Setup
+==============================
+
+1️⃣ 建立 Python 虛擬環境（可選）
+> python -m venv venv
+> venv\Scripts\activate  （Windows）
+> source venv/bin/activate  （Mac/Linux）
+
+2️⃣ 安裝後端依賴套件
+> pip install fastapi uvicorn python-multipart
+
+（如有用到其他處理模組，也要一起裝，比如 opencv-python、chardet 等）
+
+3️⃣ 啟動 FastAPI 後端（網址會是 http://localhost:8000）
+> cd backend
+> uvicorn main:app --reload
+
+---
+
+==============================
+四、上傳影片 + 處理流程說明 | Upload & Processing
+==============================
+
+✅ 使用者會在前端上傳影片
+✅ 後端接收影片並觸發：
+    - tracking.py
+    - alphapose（demo_inference.py）
+    - number.py（背號辨識）
+    - combined.py（合併資料）
+    - highlight_clip.py（剪輯精華影片）
+
+✅ 成功處理後會自動生成球員精華影片
+
+✅ 前端會導向「下載球員影片」畫面，可選擇球員背號下載精華片段
+
+---
