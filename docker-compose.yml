@@ -4,7 +4,7 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - backend/.env
+      - ./backend/.env
     volumes:
       - ./backend:/app
   frontend:
@@ -13,6 +13,6 @@ services:
       - "5173:5173"
     env_file:
       - frontend/.env
-    # command: npm run dev --host 0.0.0.0
+    command: npm run dev --host 0.0.0.0
     volumes:
       - ./frontend:/app

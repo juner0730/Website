@@ -33,7 +33,7 @@ app.add_middleware(
 class TokenRequest(BaseModel):
     token: str
 
-GOOGLE_CLIENT_ID = "579826086181-9r8n60lfa2erse942e2i1ngp8d5gh7hs.apps.googleusercontent.com"
+GOOGLE_CLIENT_ID = "579826086181-vppevqtsk2lhi5ko5qm8du2kr0v7jmro.apps.googleusercontent.com"
 
 @app.post("/auth/google")
 async def auth_google(data: TokenRequest):

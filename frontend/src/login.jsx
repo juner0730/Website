@@ -9,7 +9,7 @@ export default function Login() {
 
   const handleLoginSuccess = async (credentialResponse) => {
     const token = credentialResponse.credential;
-    const res = await fetch("http://localhost:8000/auth/google", {
+    const res = await fetch("http://localhost:8000/auth/google/callback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token }),
@@ -26,7 +26,7 @@ export default function Login() {
   };
 
   return (
-    <GoogleOAuthProvider clientId="344928823928-omsvpaevgkfq989hs310fffickus94ne.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="579826086181-vppevqtsk2lhi5ko5qm8du2kr0v7jmro.apps.googleusercontent.com">
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-100 to-gray-200 px-4">
         <div className="bg-white shadow-xl rounded-xl p-10 w-full max-w-md text-center">
           <h1 className="text-2xl font-semibold text-gray-800 mb-3">自動精華影片系統</h1>
