@@ -3,3 +3,7 @@ uvicorn
 google-auth
 requests
 python-multipart
+opencv-python
+numpy
+lap
+chardet
