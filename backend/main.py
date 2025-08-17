@@ -12,16 +12,17 @@ import json
 # Google 驗證相關
 from google.oauth2 import id_token
 from google.auth.transport import requests
-
+from fastapi.middleware.cors import CORSMiddleware
 
 HIGHLIGHT_DIR = Path("media/highlights")
+
 
 app = FastAPI()
 
 # Enable CORS for local frontend (react)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # 建議限制來源
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
