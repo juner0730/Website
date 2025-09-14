@@ -1,6 +1,9 @@
 services:
   backend:
     build: ./backend
+    gpus: all
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
     ports:
       - "8000:8000"
     env_file:

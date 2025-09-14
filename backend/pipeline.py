@@ -39,7 +39,15 @@ if default_output_video.exists():
 
 # 2. 執行 tracking.py
 print("[2/5] 執行 tracking.py...")
-subprocess.run(["python", "tracking.py", str(video_path), str(output_dir)])
+subprocess.run(["python3" , "detect.py "
+            "--weights old_data_Add_Xian_Taiyuan4CAM_finetune_10Label_new_Data0713_new.pt "
+            "--img-size 1280 "
+            "--device 0,1 "
+            "--source" ,"/home/ubuntu/Yolo_V7/game_video.mp4"
+            "--conf-thres 0.06  "
+            "--name '/home/ubuntu/Yolo_V7/result_detection_Luke99' "
+            "--save-json "
+            "--save-txt", str(video_path), str(output_dir)])
 
 # 3. 執行背號偵測
 print("[3/5] 執行 number.py...")
