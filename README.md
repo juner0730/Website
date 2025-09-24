@@ -35,7 +35,7 @@ GOOGLE_CLIENT_ID=你的_CLIENT_ID
 GOOGLE_CLIENT_SECRET=你的_CLIENT_SECRET
 GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback
 FRONTEND_ORIGIN=http://localhost:5173
-ALLOWED_EMAILS=you@example.com            # 或 @yourcompany.com（整個網域）
+ALLOWED_EMAILS=you@example.com            **這邊一定要放你想要登入的gmail賬號！！
 JWT_SECRET=請自行更換的隨機字串
 UPLOAD_BASE_DIR=/data/uploads             # docker volume 對應到 ./data/uploads
 ```
