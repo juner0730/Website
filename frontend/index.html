@@ -3,10 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Highlights</title>
+    <title>Website</title>
   </head>
   <body>
     <div id="root"></div>
+    <!-- 先載入相容層，提供全域 apiListVideos / apiUpload -->
+    <script type="module" src="/src/api-compat.js"></script>
+    <!-- 再啟動你的 app -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

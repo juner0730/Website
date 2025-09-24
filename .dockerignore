@@ -1,7 +1,9 @@
-**/node_modules
-npm-debug.log
-Dockerfile
-Dockerfile.*
-.dockerignore
+node_modules
+dist
 .git
 .gitignore
+.env
+__pycache__/
+*.pyc
+*.log
+*.zip

@@ -1,41 +1,36 @@
-import React from "react";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
-import { useAuth } from "./auth/AuthProvider.jsx";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+const API = import.meta.env.VITE_API_BASE || "http://localhost:8000";
 
 export default function Login() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
-  const loc = useLocation();
-  const from = (loc.state && loc.state.from) || "/";
-
+  const [busy, setBusy] = useState(false);
   return (
-    <div className="min-h-[100vh] grid place-items-center">
-      <div className="bg-white dark:bg-neutral-900 border dark: borde-neutral-800 rounded-x2 p-6 w-[360px] max-w-[92vw]">
-        <h1 className="text-lg font-bold mb-2 text-neutral-900 dark:text-netural-100">五人制足球自動剪輯精華系統</h1>
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">使用 Google 帳戶登入以上傳與查看影片</p>
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            try {
-              const payload = jwtDecode(credentialResponse.credential);
-              const profile = {
-                name: payload.name,
-                email: payload.email,
-                picture: payload.picture,
-                sub: payload.sub,
-              };
-              login(profile);
-              navigate(from, { replace: true });
-            } catch (e) {
-              alert("無法解析登入資訊：" + e.message);
-            }
+    <div style={{
+      minHeight:"100vh", display:"flex", alignItems:"center", justifyContent:"center",
+      background:"#0b1020"
+    }}>
+      <div style={{
+        width: 360, padding: 28, borderRadius: 16,
+        background: "rgba(255,255,255,.06)", backdropFilter:"blur(6px)",
+        border: "1px solid rgba(255,255,255,.12)", color:"#fff", boxShadow:"0 10px 30px rgba(0,0,0,.4)"
+      }}>
+        <h1 style={{margin:0, marginBottom: 16, fontSize:20, fontWeight:700, letterSpacing:.5, textAlign:"center"}}>
+          五人制足球自動精華系統
+        </h1>
+        <p style={{opacity:.8, fontSize:13, textAlign:"center", marginTop:0, marginBottom:18}}>
+          只有白名單帳號可登入
+        </p>
+        <button
+          onClick={() => {
+            setBusy(true);
+            const next = `${window.location.origin}/onepage`;
+            window.location.href = `${API}/auth/google/start?next=${encodeURIComponent(next)}`;
           }}
-          onError={() => {
-            alert("登入失敗，請重試。");
+          disabled={busy}
+          style={{
+            width:"100%", padding:"12px 14px", borderRadius:12, border:"1px solid rgba(255,255,255,.2)",
+            background: busy ? "#1456ad" : "#1a73e8", color:"#fff", fontWeight:700, cursor: busy ? "not-allowed":"pointer"
           }}
-          useOneTap
-        />
+        >{busy ? "前往 Google…" : "使用 Google 登入"}</button>
       </div>
     </div>
   );
