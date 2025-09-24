@@ -14,10 +14,10 @@ export default function Login() {
         border: "1px solid rgba(255,255,255,.12)", color:"#fff", boxShadow:"0 10px 30px rgba(0,0,0,.4)"
       }}>
         <h1 style={{margin:0, marginBottom: 16, fontSize:20, fontWeight:700, letterSpacing:.5, textAlign:"center"}}>
-          五人制足球自動精華系統
+          五人制足球AI運動員追蹤與精彩時刻捕捉系統
         </h1>
         <p style={{opacity:.8, fontSize:13, textAlign:"center", marginTop:0, marginBottom:18}}>
-          只有白名單帳號可登入
+          歡迎使用此系統
         </p>
         <button
           onClick={() => {

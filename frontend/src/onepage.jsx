@@ -128,7 +128,7 @@ export default function OnePage() {
         <div style={S.headerInner}>
           <div style={S.brand}>
             <div style={S.brandDot} />
-            <span style={S.brandText}>五人制足球自動剪輯精華系統</span>
+            <span style={S.brandText}>五人制足球AI運動員追蹤與精彩時刻捕捉系統</span>
           </div>
           <div style={S.headerRight}>
             {user?.email && <span style={S.headerEmail}>{user.email}</span>}
