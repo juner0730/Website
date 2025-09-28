@@ -186,7 +186,11 @@ def _file_info(path: str):
 @app.post("/upload")
 @app.post("/api/upload")
 async def upload_video(file: UploadFile = File(...), user: User = Depends(get_current_user)):
-    user_dir = _user_dir(user)
+    user_dir = os.path.join(UPLOAD_BASE_DIR, email_to_dir(user["email"]))
+    os.makedirs(user_dir, exist_ok=True)
+
+    target_name = make_target_filename(file.filename)
+    
     safe_name = f"{uuid.uuid4().hex}_{file.filename}"
     dst = os.path.join(user_dir, safe_name)
 
@@ -207,7 +211,13 @@ def list_videos(user: User = Depends(get_current_user)):
     for name in sorted(os.listdir(user_dir), reverse=True):
         p = os.path.join(user_dir, name)
         if os.path.isfile(p):
-            items.append(_file_info(p))
+            items.append({
+                "id": name,
+                "original_name": strip_ts_for_display(name),
+                "status": "uploaded", 
+                "created_at": datetime.fromtimestamp(st.st_mtime).isoformat(),
+            })
+    items.sort(key=lambda x: x["create_at"], reverse=True)
     return items
 
 # 讓瀏覽器可直接讀取上傳檔案（未來預覽/下載）
