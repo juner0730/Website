@@ -1,20 +1,23 @@
 services:
   backend:
-    build: ./backend
-    gpus: all
-    ports:
-      - "8000:8000"
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     env_file:
       - ./backend/.env
+    ports:
+      - "8000:8000"
     volumes:
-      - ./backend:/app
-    
+      - uploads:/data/uploads  
+
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "5173:5173"
-    env_file:
-      - frontend/.env
-    command: npm run dev -- --host 0.0.0.0
-    volumes:
-      - ./frontend:/app
+    environment:
+      - VITE_BACKEND_ORIGIN=http://localhost:8000
+
+volumes:
+  uploads: {}
